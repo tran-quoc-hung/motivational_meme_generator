@@ -1,3 +1,4 @@
+"""Module read data from csv file."""
 from typing import List
 import pandas
 
@@ -5,10 +6,13 @@ from .IngestorInterface import IngestorInterface
 from .Quote import Quote
 
 class CSVIngestor(IngestorInterface):
+    """Read data from csv file."""
+
     allowed_extensions = ['csv']
 
     @classmethod
     def parse(cls, path: str) -> List[Quote]:
+        """Read data from csv file return as list quotes."""
         if not cls.can_ingest(path):
             raise Exception('Cannot ingest this file type')
         

@@ -1,13 +1,17 @@
+"""Module read data from txt file."""
 from typing import List
 
 from .IngestorInterface import IngestorInterface
 from .Quote import Quote
 
 class TXTIngestor(IngestorInterface):
+    """Read data from txt file."""
+
     allowed_extensions = ['txt']
 
     @classmethod
     def parse(cls, path: str) -> List[Quote]:
+        """Read data from txt file return as list quotes."""
         if not cls.can_ingest(path):
             raise Exception('Cannot ingest this file type')
         

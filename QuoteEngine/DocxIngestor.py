@@ -1,3 +1,4 @@
+"""Module read data from docx file."""
 from typing import List
 import docx
 
@@ -5,10 +6,13 @@ from .IngestorInterface import IngestorInterface
 from .Quote import Quote
 
 class DocxIngestor(IngestorInterface):
+    """Read data from docx file."""
+    
     allowed_extensions = ['docx']
 
     @classmethod
     def parse(cls, path: str) -> List[Quote]:
+        """Read data from docx file return as list quotes."""
         if not cls.can_ingest(path):
             raise Exception('Cannot ingest this file type')
         

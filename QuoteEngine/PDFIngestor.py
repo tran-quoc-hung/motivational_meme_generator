@@ -1,3 +1,4 @@
+"""Module read data from pdf file."""
 from typing import List
 import subprocess
 import os
@@ -7,10 +8,13 @@ from .IngestorInterface import IngestorInterface
 from .Quote import Quote
 
 class PDFIngestor(IngestorInterface):
+    """Read data from pdf file."""
+
     allowed_extensions = ['pdf']
 
     @classmethod
     def parse(cls, path: str) -> List[Quote]:
+        """Read data from pdf file return as list quotes."""
         if not cls.can_ingest(path):
             raise Exception('Cannot ingest this file type')
         
