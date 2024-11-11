@@ -38,6 +38,8 @@ def generate_meme(path=None, body=None, author=None):
         quote = QuoteModel(body, author)
 
     meme = MemeEngine('./tmp')
+    if not os.path.exists('./tmp'):
+        os.makedirs('./tmp')
     path = meme.make_meme(img, quote.body, quote.author)
     return path
 

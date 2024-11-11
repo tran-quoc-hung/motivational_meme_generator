@@ -11,6 +11,8 @@ from MemeEngine import MemeEngine
 app = Flask(__name__)
 
 meme = MemeEngine('./static')
+if not os.path.exists('./static'):
+    os.makedirs('./static')
 
 def setup():
     """Load all resources."""
@@ -60,7 +62,7 @@ def meme_post():
     body = request.form['body']
     author = request.form['author']
     r = requests.get(image_url)
-    tmp = f'./tmp/{random.randint(0, 10000000)}.jpg'
+    tmp = f'./{random.randint(0, 10000000)}.jpg'
     with open(tmp, 'wb') as img:
         img.write(r.content)
 
