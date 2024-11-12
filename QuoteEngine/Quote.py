@@ -1,4 +1,6 @@
 """Quote model."""
+
+
 class Quote():
     """Defines object quote."""
 

@@ -8,6 +8,7 @@ from .CSVIngestor import CSVIngestor
 from .PDFIngestor import PDFIngestor
 from .TXTIngestor import TXTIngestor
 
+
 class Ingestor(IngestorInterface):
     """Read data from txt,csv,docx,pdf file."""
 

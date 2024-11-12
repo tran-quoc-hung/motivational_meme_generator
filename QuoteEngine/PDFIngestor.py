@@ -7,6 +7,7 @@ import random
 from .IngestorInterface import IngestorInterface
 from .Quote import Quote
 
+
 class PDFIngestor(IngestorInterface):
     """Read data from pdf file."""
 
@@ -17,7 +18,7 @@ class PDFIngestor(IngestorInterface):
         """Read data from pdf file return as list quotes."""
         if not cls.can_ingest(path):
             raise Exception('Cannot ingest this file type')
-        
+
         tmp = f'./{random.randint(0,1000000)}.txt'
         call = subprocess.call(['pdftotext', path, tmp])
 
@@ -35,7 +36,7 @@ class PDFIngestor(IngestorInterface):
                 parsed = line.split('-')
                 new_quote = Quote(parsed[0].strip().strip('"'), parsed[1])
                 quotes.append(new_quote)
-        
+
         file_ref.close()
         os.remove(tmp)
         return quotes

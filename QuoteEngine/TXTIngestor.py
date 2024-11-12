@@ -4,6 +4,7 @@ from typing import List
 from .IngestorInterface import IngestorInterface
 from .Quote import Quote
 
+
 class TXTIngestor(IngestorInterface):
     """Read data from txt file."""
 
@@ -14,10 +15,10 @@ class TXTIngestor(IngestorInterface):
         """Read data from txt file return as list quotes."""
         if not cls.can_ingest(path):
             raise Exception('Cannot ingest this file type')
-        
+
         file_ref = open(path, "r")
         quotes = []
-        
+
         for line in file_ref.readlines():
             line = line.strip("<ï»¿").strip()
             if len(line) > 0:
@@ -26,5 +27,3 @@ class TXTIngestor(IngestorInterface):
                 quotes.append(new_quote)
         file_ref.close()
         return quotes
-
-
