@@ -62,7 +62,10 @@ def meme_post():
     image_url = request.form['image_url']
     body = request.form['body']
     author = request.form['author']
-    r = requests.get(image_url)
+    try:
+        r = requests.get(image_url)
+    except Exception:
+        return render_template('meme.html')
     tmp = f'./{random.randint(0, 10000000)}.jpg'
     with open(tmp, 'wb') as img:
         img.write(r.content)

@@ -1,4 +1,7 @@
 """This is meme engine module."""
+import random
+import textwrap
+
 from PIL import Image, ImageDraw
 
 
@@ -26,10 +29,22 @@ class MemeEngine():
         height = int(ratio*float(img.size[1]))
         img = img.resize((width, height), Image.NEAREST)
 
+        cmwidth = round(width / 37.79527559055, 0)
+        cmheight = round(height / 37.79527559055, 0)
+        contain = text
         if text is not None:
             draw = ImageDraw.Draw(img)
-            draw.text((10, 10), f'{text} \n - {author}',
-                      fill='white', font_size=40)
+
+            if len(text) > cmwidth:
+                wrapper = textwrap.TextWrapper(width=int(cmwidth) * 2)
+                contain_wrapper = wrapper.wrap(text=text)
+                contain = ''
+                for str in contain_wrapper:
+                    contain = f'{contain} \n {str}'
+
+            draw.text((random.uniform(0, cmwidth * 2),
+                       random.uniform(0, cmheight * 10)),
+                      f'{contain}\n - {author}', fill='white', font_size=30)
 
         out_path = img_path.split('/')[-1]
         img.save(f'{self.output_dir}/{out_path}')
