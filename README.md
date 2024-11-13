@@ -55,8 +55,8 @@ Let's take a closer look at the purpose of each of these files and folders:
 - `meme.py`: In this file, you'll create a Command-Line Interface tool
 - `MemeEngine.py`: In this file, you'll create meme from images and data from available files 
 - `QuteEngine\.`: The Quote Engine module is responsible for ingesting many types of files that contain quotes.
+  - `Quote.py`: In this file, you'll define Python objects to quote a `Quote`
   - `Ingestor.py`: In this file, you'll read data from appropriate file
-  - `.py`: You will read data from a file with the extension csv
   - `DocxIngestor.py`: You will read data from a file with the extension docx
   - `CSVIngestor.py`: You will read data from a file with the extension csv
   - `PDFIngestor.py`: You will read data from a file with the extension pdf
