@@ -64,20 +64,20 @@ def meme_post():
     author = request.form['author']
     try:
         r = requests.get(image_url)
+        tmp = f'./{random.randint(0, 10000000)}.jpg'
+        with open(tmp, 'wb') as img:
+            img.write(r.content)
+
+        # Use the meme object to generate a meme using this temp
+        #    file and the body and author form paramaters.
+        path = meme.make_meme(tmp, body, author)
+        img.close()
+
+        # Remove the temporary saved image.
+        os.remove(tmp)
+        return render_template('meme.html', path=path)
     except Exception:
         return render_template('meme.html')
-    tmp = f'./{random.randint(0, 10000000)}.jpg'
-    with open(tmp, 'wb') as img:
-        img.write(r.content)
-
-    # Use the meme object to generate a meme using this temp
-    #    file and the body and author form paramaters.
-    path = meme.make_meme(tmp, body, author)
-    img.close()
-
-    # Remove the temporary saved image.
-    os.remove(tmp)
-    return render_template('meme.html', path=path)
 
 
 if __name__ == "__main__":
